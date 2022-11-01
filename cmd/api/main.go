@@ -92,3 +92,8 @@ func openDB(cfg config) (*sql.DB, error) {
 
 	return db, nil
 }
+
+// Открывает сваггер документацию
+func swaggerHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "index.html")
+}

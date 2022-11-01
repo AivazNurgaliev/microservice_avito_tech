@@ -1,0 +1,615 @@
+openapi: 3.0.3
+info:
+  title: Avito-Tech Test Assignment for Internship
+  description: |-
+    Позволяет управлять балансом пользователей. Пользователи могут пополнять, снимать и переводить деньги.
+    Так же они могут покупать услуги. API позволяет получить месячный отчёт, и данные для пользователя(за что списали/зачислили и тд)
+  contact:
+    email: aivaznurgaliev@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:4000
+tags:
+  - name: report
+    description: Позволяет получить отчёт, создать запись, если признана операция, получение признанной операции
+  - name: account
+    description: Действие с пользователями
+  - name: service
+    description: Услуги
+  - name: history
+    description: История зачислений/списаний/переводов + покупок услуг пользователем
+paths:
+  /account/get/{AccountId}:
+    get:
+      tags:
+        - account
+      summary: Получение пользователя по Id
+      description: Получение пользователя по Id
+      parameters:
+        - in: path
+          name: AccountId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /account/add/{id}/{account_cash}:
+    put:
+      tags:
+        - account
+      summary: Добавляет к определенному пользователю деньги
+      description: Если пользователя нет, то он создаётся
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: account_cash
+          required: true
+          schema:
+            type: number
+
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /account/transfer/{id}/{ToId}/{account_cash}:
+    put:
+      tags:
+        - account
+      summary: Перевод от одного пользователя - другому
+      description: Перевод от одного пользователя - другому
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: ToId
+          required: true
+          schema:
+            type: integer
+
+        - in: path
+          name: account_cash
+          required: true
+          schema:
+            type: number
+
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '400':
+          description: Invalid status value
+  /account/withdrawal/{id}/{account_cash}:
+    put:
+      tags:
+        - account
+      summary: Вывод денег со счёта
+      description: Вывод денег со счёта
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: account_cash
+          required: true
+          schema:
+            type: number
+
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+  /account/reserv/{id_account}/{id_service}:
+    put:
+      tags:
+        - account
+      summary: Зарезервировать средства на специальном счёте
+      description: Зарезервировать средства на специальном счёте
+      parameters:
+        - in: path
+          name: id_account
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: id_service
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /company/report/{year}/{month}:
+    get:
+      tags:
+        - report
+      summary: Возвращает ссылку на созданный csv файл с отчётом
+      description: Возвращает ссылку на созданный csv файл с отчётом
+      parameters:
+        - in: path
+          name: year
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: month
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportLink'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReportLink'
+  /file/{filename}:
+    get:
+      tags:
+        - report
+      summary: Возвращает файл с отчётом
+      description:  Возвращает файл с отчётом
+      parameters:
+        - in: path
+          name: filename
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportFileCSV'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReportFileCSV'
+  /history/user/{id}:
+    get:
+      tags:
+        - history
+      summary: История покупок пользователя различных услуг
+      description: История покупок пользователя различных услуг
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: integer
+          description: Текущая страница
+        - in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+          description: Количество страниц
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: string
+          description: Сортировка
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserServiceReport'
+  /history/transactions/{id}:
+    get:
+      tags:
+        - history
+      summary: Возвращает список транзакций, совершенных пользователем
+      description: Пополнение, снятие, переводы
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          required: false
+          schema:
+            type: integer
+          description: Текущая страница
+        - in: query
+          name: page_size
+          required: false
+          schema:
+            type: integer
+          description: Количество страниц
+        - in: query
+          name: sort
+          required: false
+          schema:
+            type: string
+          description: Сортировка
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTransactionHistoryReport'
+  /service/get/{id}:
+    get:
+      tags:
+        - service
+      summary: Получаем сервис по заданному id
+      description: Получаем сервис по заданному id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+  /service/create/{name}/{price}:
+    post:
+      tags:
+        - service
+      summary: Создаёт сервис с именем и стоимостью услуги
+      description: Создаёт сервис с именем и стоимостью услуги
+      parameters:
+        - in: path
+          name: name
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: price
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Service'
+  /report/create/{id}:
+    put:
+      tags:
+        - report
+      summary: Позволяет признать выручку(операцию) и создает запись id - берется с temp_report_id(то есть из таблички, где пока не признанные операции)
+      description: Позволяет признать выручку(операцию) и создает запись
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Report'
+  /report/get/{id}:
+    get:
+      tags:
+        - report
+      summary: Позволяет получить запись из признанных выручек(операций)
+      description: id = report_id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Report'
+  /transaction/get/{id}:
+    get:
+      tags:
+        - transaction
+      summary: Возвращает транзакцию(перевод, пополнение, снятие)
+      description: id = transaction_history_id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          format: int64
+          example: 10
+        AccountCash:
+          type: number
+          format: float64
+          example: 506.93
+        AccountReservedCash:
+          type: number
+          format: float64
+          example: 124.91
+
+      xml:
+        name: account
+
+    Report:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          format: int64
+          example: 10
+        ReportId:
+          type: integer
+          format: int64
+          example: 2
+        ServiceId:
+          type: integer
+          format: int64
+          example: 7
+        Report_time:
+          type: string
+          example: 2022-09-29T19:31:59.940915+03:00
+
+      xml:
+        name: report
+
+    ReportLink:
+      type: object
+      properties:
+        link:
+          type: string
+          example: http://localhost:4000/file/report2022-10.csv
+      xml:
+        name: reportlink
+    ReportFileCSV:
+      type: object
+      properties:
+        serviceId:
+          type: integer
+          example: 5
+        revenue:
+          type: number
+          example: 1349.24
+      xml:
+        name: reportFileCsv
+    UserHistoryResponse:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          format: int64
+          example: 10
+        ReportTime:
+          type: string
+          example: 2022-09-29T19:31:59.940915+03:00
+        ServicePrice:
+          type: number
+          format: float64
+          example: 241.91
+        ServiceName:
+          type: string
+          example: wifi support
+      xml:
+        name: userHistoryResponse
+    Metadata:
+      type: object
+      properties:
+        CurrentPage:
+          type: integer
+          format: int64
+          example: 2
+        PageSize:
+          type: integer
+          format: int64
+          example: 25
+        FirstPage:
+          type: integer
+          format: int64
+          example: 1
+        LastPage:
+          type: integer
+          format: int64
+          example: 12
+        TotalRecords:
+          type: integer
+          format: int64
+          example: 9275
+      xml:
+        name: metadata
+    UserServiceReport:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+
+        userServiceReport:
+          type: array
+          xml:
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/UserHistoryResponse'
+
+      xml:
+        name: userServiceReport
+    TransactionHistoryResponse:
+      type: object
+      properties:
+        SenderId:
+          type: integer
+          format: int64
+          example: 3
+        ReceiverId:
+          type: integer
+          format: int64
+          example: 7
+        TransactionTime:
+          type: string
+          example: 2022-09-29T19:31:59.940915+03:00
+        TransactionPrice:
+          type: number
+          format: float64
+          example: 139
+        OperationTyoe:
+          type: string
+          example: transfer
+
+      xml:
+        name: transactionHistoryResponse
+
+    UserTransactionHistoryReport:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+
+        transactionHistoryResponse:
+          type: array
+          xml:
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/TransactionHistoryResponse'
+
+      xml:
+        name: userTransactionHistoryResponse
+
+    Service:
+      type: object
+      properties:
+        ServiceId:
+          type: integer
+          format: int64
+          example: 10
+        ServiceName:
+          type: string
+          example: premium account
+        ServicePrice:
+          type: number
+          format: float64
+          example: 1500
+
+      xml:
+        name: service
+    Transaction:
+      type: object
+      properties:
+        TransactionId:
+          type: integer
+          format: int64
+          example: 10
+        SenderId:
+          type: integer
+          format: int64
+          example: 3
+        ReceiverId:
+          type: integer
+          format: int64
+          example: 7
+        OperationId:
+          type: integer
+          format: int64
+          example: 3
+        TransactionTime:
+          type: string
+          example: 2022-09-29T19:31:59.940915+03:00
+        TransactionPrice:
+          type: number
+          format: float64
+          example: 139
+      xml:
+        name: transaction

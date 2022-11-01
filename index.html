@@ -1,0 +1,1134 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Avito-Tech Test Assignment for Internship</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>Avito-Tech Test Assignment for Internship</h1>
+    <div class="app-desc">Позволяет управлять балансом пользователей. Пользователи могут пополнять, снимать и переводить деньги.
+Так же они могут покупать услуги. API позволяет получить месячный отчёт, и данные для пользователя(за что списали/зачислили и тд)</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="aivaznurgaliev@gmail.com">aivaznurgaliev@gmail.com</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Account">Account</a></h4>
+  <ul>
+  <li><a href="#accountAddIdAccountCashPut"><code><span class="http-method">put</span> /account/add/{id}/{account_cash}</code></a></li>
+  <li><a href="#accountGetAccountIdGet"><code><span class="http-method">get</span> /account/get/{AccountId}</code></a></li>
+  <li><a href="#accountReservIdAccountIdServicePut"><code><span class="http-method">put</span> /account/reserv/{id_account}/{id_service}</code></a></li>
+  <li><a href="#accountTransferIdToIdAccountCashPut"><code><span class="http-method">put</span> /account/transfer/{id}/{ToId}/{account_cash}</code></a></li>
+  <li><a href="#accountWithdrawalIdAccountCashPut"><code><span class="http-method">put</span> /account/withdrawal/{id}/{account_cash}</code></a></li>
+  </ul>
+  <h4><a href="#History">History</a></h4>
+  <ul>
+  <li><a href="#historyTransactionsIdGet"><code><span class="http-method">get</span> /history/transactions/{id}</code></a></li>
+  <li><a href="#historyUserIdGet"><code><span class="http-method">get</span> /history/user/{id}</code></a></li>
+  </ul>
+  <h4><a href="#Report">Report</a></h4>
+  <ul>
+  <li><a href="#companyReportYearMonthGet"><code><span class="http-method">get</span> /company/report/{year}/{month}</code></a></li>
+  <li><a href="#fileFilenameGet"><code><span class="http-method">get</span> /file/{filename}</code></a></li>
+  <li><a href="#reportCreateIdPut"><code><span class="http-method">put</span> /report/create/{id}</code></a></li>
+  <li><a href="#reportGetIdGet"><code><span class="http-method">get</span> /report/get/{id}</code></a></li>
+  </ul>
+  <h4><a href="#Service">Service</a></h4>
+  <ul>
+  <li><a href="#serviceCreateNamePricePost"><code><span class="http-method">post</span> /service/create/{name}/{price}</code></a></li>
+  <li><a href="#serviceGetIdGet"><code><span class="http-method">get</span> /service/get/{id}</code></a></li>
+  </ul>
+  <h4><a href="#Transaction">Transaction</a></h4>
+  <ul>
+  <li><a href="#transactionGetIdGet"><code><span class="http-method">get</span> /transaction/get/{id}</code></a></li>
+  </ul>
+
+  <h1><a name="Account">Account</a></h1>
+  <div class="method"><a name="accountAddIdAccountCashPut"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /account/add/{id}/{account_cash}</code></pre></div>
+    <div class="method-summary">Добавляет к определенному пользователю деньги (<span class="nickname">accountAddIdAccountCashPut</span>)</div>
+    <div class="method-notes">Если пользователя нет, то он создаётся</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>      <div class="param">account_cash (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Account">Account</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "AccountCash" : 506.93,
+  "AccountId" : 10,
+  "AccountReservedCash" : 124.91
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful operation
+        <a href="#Account">Account</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="accountGetAccountIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /account/get/{AccountId}</code></pre></div>
+    <div class="method-summary">Получение пользователя по Id (<span class="nickname">accountGetAccountIdGet</span>)</div>
+    <div class="method-notes">Получение пользователя по Id</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">AccountId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Account">Account</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "AccountCash" : 506.93,
+  "AccountId" : 10,
+  "AccountReservedCash" : 124.91
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successful operation
+        <a href="#Account">Account</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="accountReservIdAccountIdServicePut"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /account/reserv/{id_account}/{id_service}</code></pre></div>
+    <div class="method-summary">Зарезервировать средства на специальном счёте (<span class="nickname">accountReservIdAccountIdServicePut</span>)</div>
+    <div class="method-notes">Зарезервировать средства на специальном счёте</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id_account (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>      <div class="param">id_service (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Account">Account</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "AccountCash" : 506.93,
+  "AccountId" : 10,
+  "AccountReservedCash" : 124.91
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#Account">Account</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="accountTransferIdToIdAccountCashPut"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /account/transfer/{id}/{ToId}/{account_cash}</code></pre></div>
+    <div class="method-summary">Перевод от одного пользователя - другому (<span class="nickname">accountTransferIdToIdAccountCashPut</span>)</div>
+    <div class="method-notes">Перевод от одного пользователя - другому</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>      <div class="param">ToId (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>      <div class="param">account_cash (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Account">Account</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "AccountCash" : 506.93,
+  "AccountId" : 10,
+  "AccountReservedCash" : 124.91
+}, {
+  "AccountCash" : 506.93,
+  "AccountId" : 10,
+  "AccountReservedCash" : 124.91
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+    <h4 class="field-label">400</h4>
+    Invalid status value
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="accountWithdrawalIdAccountCashPut"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /account/withdrawal/{id}/{account_cash}</code></pre></div>
+    <div class="method-summary">Вывод денег со счёта (<span class="nickname">accountWithdrawalIdAccountCashPut</span>)</div>
+    <div class="method-notes">Вывод денег со счёта</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>      <div class="param">account_cash (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Account">Account</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "AccountCash" : 506.93,
+  "AccountId" : 10,
+  "AccountReservedCash" : 124.91
+}, {
+  "AccountCash" : 506.93,
+  "AccountId" : 10,
+  "AccountReservedCash" : 124.91
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="History">History</a></h1>
+  <div class="method"><a name="historyTransactionsIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /history/transactions/{id}</code></pre></div>
+    <div class="method-summary">Возвращает список транзакций, совершенных пользователем (<span class="nickname">historyTransactionsIdGet</span>)</div>
+    <div class="method-notes">Пополнение, снятие, переводы</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">page (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Текущая страница </div>      <div class="param">page_size (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Количество страниц </div>      <div class="param">sort (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Сортировка </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#UserTransactionHistoryReport">UserTransactionHistoryReport</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "metadata" : {
+    "FirstPage" : 1,
+    "PageSize" : 25,
+    "CurrentPage" : 2,
+    "TotalRecords" : 9275,
+    "LastPage" : 12
+  },
+  "transactionHistoryResponse" : [ {
+    "ReceiverId" : 7,
+    "TransactionTime" : "2022-09-29T19:31:59.940915+03:00",
+    "OperationTyoe" : "transfer",
+    "SenderId" : 3,
+    "TransactionPrice" : 139
+  }, {
+    "ReceiverId" : 7,
+    "TransactionTime" : "2022-09-29T19:31:59.940915+03:00",
+    "OperationTyoe" : "transfer",
+    "SenderId" : 3,
+    "TransactionPrice" : 139
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#UserTransactionHistoryReport">UserTransactionHistoryReport</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="historyUserIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /history/user/{id}</code></pre></div>
+    <div class="method-summary">История покупок пользователя различных услуг (<span class="nickname">historyUserIdGet</span>)</div>
+    <div class="method-notes">История покупок пользователя различных услуг</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">page (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Текущая страница </div>      <div class="param">page_size (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Количество страниц </div>      <div class="param">sort (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Сортировка </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#UserServiceReport">UserServiceReport</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "metadata" : {
+    "FirstPage" : 1,
+    "PageSize" : 25,
+    "CurrentPage" : 2,
+    "TotalRecords" : 9275,
+    "LastPage" : 12
+  },
+  "userServiceReport" : [ {
+    "ReportTime" : "2022-09-29T19:31:59.940915+03:00",
+    "AccountId" : 10,
+    "ServiceName" : "wifi support",
+    "ServicePrice" : 241.91
+  }, {
+    "ReportTime" : "2022-09-29T19:31:59.940915+03:00",
+    "AccountId" : 10,
+    "ServiceName" : "wifi support",
+    "ServicePrice" : 241.91
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#UserServiceReport">UserServiceReport</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Report">Report</a></h1>
+  <div class="method"><a name="companyReportYearMonthGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /company/report/{year}/{month}</code></pre></div>
+    <div class="method-summary">Возвращает ссылку на созданный csv файл с отчётом (<span class="nickname">companyReportYearMonthGet</span>)</div>
+    <div class="method-notes">Возвращает ссылку на созданный csv файл с отчётом</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">year (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>      <div class="param">month (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ReportLink">ReportLink</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "link" : "http://localhost:4000/file/report2022-10.csv"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#ReportLink">ReportLink</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="fileFilenameGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /file/{filename}</code></pre></div>
+    <div class="method-summary">Возвращает файл с отчётом (<span class="nickname">fileFilenameGet</span>)</div>
+    <div class="method-notes">Возвращает файл с отчётом</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">filename (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ReportFileCSV">ReportFileCSV</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "revenue" : 1349.24,
+  "serviceId" : 5
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#ReportFileCSV">ReportFileCSV</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="reportCreateIdPut"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /report/create/{id}</code></pre></div>
+    <div class="method-summary">Позволяет признать выручку(операцию) и создает запись id - берется с temp_report_id(то есть из таблички, где пока не признанные операции) (<span class="nickname">reportCreateIdPut</span>)</div>
+    <div class="method-notes">Позволяет признать выручку(операцию) и создает запись</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Report">Report</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "AccountId" : 10,
+  "ReportId" : 2,
+  "ServiceId" : 7,
+  "Report_time" : "2022-09-29T19:31:59.940915+03:00"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#Report">Report</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="reportGetIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /report/get/{id}</code></pre></div>
+    <div class="method-summary">Позволяет получить запись из признанных выручек(операций) (<span class="nickname">reportGetIdGet</span>)</div>
+    <div class="method-notes">id = report_id</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Report">Report</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "AccountId" : 10,
+  "ReportId" : 2,
+  "ServiceId" : 7,
+  "Report_time" : "2022-09-29T19:31:59.940915+03:00"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#Report">Report</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Service">Service</a></h1>
+  <div class="method"><a name="serviceCreateNamePricePost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /service/create/{name}/{price}</code></pre></div>
+    <div class="method-summary">Создаёт сервис с именем и стоимостью услуги (<span class="nickname">serviceCreateNamePricePost</span>)</div>
+    <div class="method-notes">Создаёт сервис с именем и стоимостью услуги</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>      <div class="param">price (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Service">Service</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "ServiceName" : "premium account",
+  "ServicePrice" : 1500,
+  "ServiceId" : 10
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#Service">Service</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="serviceGetIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /service/get/{id}</code></pre></div>
+    <div class="method-summary">Получаем сервис по заданному id (<span class="nickname">serviceGetIdGet</span>)</div>
+    <div class="method-notes">Получаем сервис по заданному id</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Service">Service</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "ServiceName" : "premium account",
+  "ServicePrice" : 1500,
+  "ServiceId" : 10
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#Service">Service</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Transaction">Transaction</a></h1>
+  <div class="method"><a name="transactionGetIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transaction/get/{id}</code></pre></div>
+    <div class="method-summary">Возвращает транзакцию(перевод, пополнение, снятие) (<span class="nickname">transactionGetIdGet</span>)</div>
+    <div class="method-notes">id = transaction_history_id</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Transaction">Transaction</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "ReceiverId" : 7,
+  "TransactionTime" : "2022-09-29T19:31:59.940915+03:00",
+  "OperationId" : 3,
+  "SenderId" : 3,
+  "TransactionPrice" : 139,
+  "TransactionId" : 10
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    successful operation
+        <a href="#Transaction">Transaction</a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Account"><code>Account</code></a></li>
+    <li><a href="#Metadata"><code>Metadata</code></a></li>
+    <li><a href="#Report"><code>Report</code></a></li>
+    <li><a href="#ReportFileCSV"><code>ReportFileCSV</code></a></li>
+    <li><a href="#ReportLink"><code>ReportLink</code></a></li>
+    <li><a href="#Service"><code>Service</code></a></li>
+    <li><a href="#Transaction"><code>Transaction</code></a></li>
+    <li><a href="#TransactionHistoryResponse"><code>TransactionHistoryResponse</code></a></li>
+    <li><a href="#UserHistoryResponse"><code>UserHistoryResponse</code></a></li>
+    <li><a href="#UserServiceReport"><code>UserServiceReport</code></a></li>
+    <li><a href="#UserTransactionHistoryReport"><code>UserTransactionHistoryReport</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Account"><code>Account</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">AccountId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 10</span></div>
+<div class="param">AccountCash (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  format: float64</div>
+          <div class="param-desc"><span class="param-type">example: 506.93</span></div>
+<div class="param">AccountReservedCash (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  format: float64</div>
+          <div class="param-desc"><span class="param-type">example: 124.91</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Metadata"><code>Metadata</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">CurrentPage (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 2</span></div>
+<div class="param">PageSize (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 25</span></div>
+<div class="param">FirstPage (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">LastPage (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 12</span></div>
+<div class="param">TotalRecords (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 9275</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Report"><code>Report</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">AccountId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 10</span></div>
+<div class="param">ReportId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 2</span></div>
+<div class="param">ServiceId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 7</span></div>
+<div class="param">Report_time (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 2022-09-29T19:31:59.940915+03:00</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ReportFileCSV"><code>ReportFileCSV</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">serviceId (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 5</span></div>
+<div class="param">revenue (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1349.24</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ReportLink"><code>ReportLink</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">link (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: http://localhost:4000/file/report2022-10.csv</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Service"><code>Service</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">ServiceId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 10</span></div>
+<div class="param">ServiceName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: premium account</span></div>
+<div class="param">ServicePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  format: float64</div>
+          <div class="param-desc"><span class="param-type">example: 1500</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Transaction"><code>Transaction</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">TransactionId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 10</span></div>
+<div class="param">SenderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 3</span></div>
+<div class="param">ReceiverId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 7</span></div>
+<div class="param">OperationId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 3</span></div>
+<div class="param">TransactionTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 2022-09-29T19:31:59.940915+03:00</span></div>
+<div class="param">TransactionPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  format: float64</div>
+          <div class="param-desc"><span class="param-type">example: 139</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TransactionHistoryResponse"><code>TransactionHistoryResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">SenderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 3</span></div>
+<div class="param">ReceiverId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 7</span></div>
+<div class="param">TransactionTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 2022-09-29T19:31:59.940915+03:00</span></div>
+<div class="param">TransactionPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  format: float64</div>
+          <div class="param-desc"><span class="param-type">example: 139</span></div>
+<div class="param">OperationTyoe (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: transfer</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserHistoryResponse"><code>UserHistoryResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">AccountId (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 10</span></div>
+<div class="param">ReportTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 2022-09-29T19:31:59.940915+03:00</span></div>
+<div class="param">ServicePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  format: float64</div>
+          <div class="param-desc"><span class="param-type">example: 241.91</span></div>
+<div class="param">ServiceName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: wifi support</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserServiceReport"><code>UserServiceReport</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">metadata (optional)</div><div class="param-desc"><span class="param-type"><a href="#Metadata">Metadata</a></span>  </div>
+<div class="param">userServiceReport (optional)</div><div class="param-desc"><span class="param-type"><a href="#UserHistoryResponse">array[UserHistoryResponse]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserTransactionHistoryReport"><code>UserTransactionHistoryReport</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">metadata (optional)</div><div class="param-desc"><span class="param-type"><a href="#Metadata">Metadata</a></span>  </div>
+<div class="param">transactionHistoryResponse (optional)</div><div class="param-desc"><span class="param-type"><a href="#TransactionHistoryResponse">array[TransactionHistoryResponse]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

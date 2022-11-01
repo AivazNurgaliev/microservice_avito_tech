@@ -9,12 +9,12 @@ import (
 )
 
 type Transaction struct {
-	TransactionId   int64   `json:"transaction_id"`
-	SenderId        int64   `json:"sender_id"`
-	ReceiverId      int64   `json:"receiver_id"`
-	OperationId     int64   `json:"operation_id"`
-	TransactionTime string  `json:"transaction_time"`
-	Money           float64 `json:"transaction_price"`
+	TransactionId    int64   `json:"transaction_id"`
+	SenderId         int64   `json:"sender_id"`
+	ReceiverId       int64   `json:"receiver_id"`
+	OperationId      int64   `json:"operation_id"`
+	TransactionTime  string  `json:"transaction_time"`
+	TransactionPrice float64 `json:"transaction_price"`
 }
 type TransactionModel struct {
 	DB *sql.DB
@@ -47,7 +47,6 @@ type UserReportHistoryResponse struct {
 	ServiceName  string  `json:"service_name"`
 }
 
-// todo!!! returns data with paginating feature
 func (t TransactionHistoryModel) GetUserTransactionHistory(id int64, filters Filters) ([]TransactionHistoryResponse, Metadata, error) {
 	if id < 1 {
 		return nil, Metadata{}, errors.New("incorrect id")
@@ -118,7 +117,7 @@ func (t TransactionModel) GetTransactionById(id int64) (*Transaction, error) {
 		&transaction.ReceiverId,
 		&transaction.OperationId,
 		&transaction.TransactionTime,
-		&transaction.Money,
+		&transaction.TransactionPrice,
 	)
 
 	if err != nil {
