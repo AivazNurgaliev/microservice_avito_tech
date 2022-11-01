@@ -8,9 +8,6 @@ import (
 	"os"
 )
 
-//todo переименовать
-// функция получения временного платежа
-
 func (app *application) getReportTempHandler(w http.ResponseWriter, r *http.Request) {
 
 	id, err := app.readIdFromPathParam(r)
@@ -33,7 +30,7 @@ func (app *application) getReportTempHandler(w http.ResponseWriter, r *http.Requ
 	}
 }
 
-// функция подтверждения пэймента
+// признание платежа
 func (app *application) compensationRecognitionHandler(w http.ResponseWriter, r *http.Request) {
 	tempCompensationID, err := app.readIdFromPathParam(r)
 	if err != nil || tempCompensationID < 1 {

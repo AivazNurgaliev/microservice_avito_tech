@@ -5,7 +5,6 @@ import (
 	"net/http"
 )
 
-// todo
 func (app *application) getTransactionHandler(w http.ResponseWriter, r *http.Request) {
 
 	id, err := app.readIdFromPathParam(r)

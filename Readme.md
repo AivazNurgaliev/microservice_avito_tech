@@ -18,6 +18,7 @@
 3) Если не скачались библиотеки, то пропишем следущие команды:
 go get github.com/lib/pq 
 go get github.com/julienschmidt/httprouter
+go get github.com/tkanos/gonfig
 4) Запускаем из ./cmd/api
 5) go run . или прямо из директории go run ./cmd/api
 6) (!!!) Все запросы осуществлялись через Postman

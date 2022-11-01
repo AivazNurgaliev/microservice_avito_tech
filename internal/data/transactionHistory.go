@@ -8,7 +8,6 @@ import (
 	"time"
 )
 
-// todo rename all variables
 type Transaction struct {
 	TransactionId   int64   `json:"transaction_id"`
 	SenderId        int64   `json:"sender_id"`
@@ -34,7 +33,6 @@ type TransactionHistoryModel struct {
 }
 
 type TransactionHistoryResponse struct {
-	//AccountId        int64   `json:"transaction_id"`
 	SenderId         int64   `json:"sender_id"`
 	ReceiverId       int64   `json:"receiver_id"`
 	TransactionTime  string  `json:"transaction_time"`
@@ -77,7 +75,6 @@ func (t TransactionHistoryModel) GetUserTransactionHistory(id int64, filters Fil
 
 	for rows.Next() {
 		var history TransactionHistoryResponse
-		//var str = make([]string, 0)
 		err := rows.Scan(&totalRecords, &history.SenderId, &history.ReceiverId,
 			&history.TransactionTime, &history.TransactionPrice, &history.OperationType)
 		if err != nil {

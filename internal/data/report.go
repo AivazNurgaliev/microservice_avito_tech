@@ -26,7 +26,6 @@ type ReportResult struct {
 }
 
 // Returns slice with certain service and revenue for this service in period month/year
-// todo rename!!!
 func (r ReportModel) GetMonthlyReport(year int64, month int64) ([][]string, error) {
 	if year < 0 || month > 12 || month < 1 {
 		return nil, errors.New("incorrect data")
@@ -42,7 +41,6 @@ func (r ReportModel) GetMonthlyReport(year int64, month int64) ([][]string, erro
 			GROUP BY service.service_id;
 		`
 
-	//todo log.println??? instead of app.logger...
 	rows, err := r.DB.Query(query, year, month)
 	if err != nil {
 		log.Println(err)
